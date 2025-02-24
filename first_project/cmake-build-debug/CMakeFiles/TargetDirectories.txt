@@ -1,0 +1,3 @@
+/home/alexander/Documents/Repository/C++/first_project/cmake-build-debug/CMakeFiles/first_project.dir
+/home/alexander/Documents/Repository/C++/first_project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/alexander/Documents/Repository/C++/first_project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
