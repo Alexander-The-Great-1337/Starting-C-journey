@@ -1,7 +1,8 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello World!";
+    const int num = 42;
+    std::cout << "Hello World! " << num << std::endl;
 
     return 0;
 }
