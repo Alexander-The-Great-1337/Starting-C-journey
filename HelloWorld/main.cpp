@@ -1,8 +1,15 @@
 #include <iostream>
 
 int main() {
-    const int num = 42;
-    std::cout << "Hello World! " << num << std::endl;
+    int a = 1;
+    int b = 2;
+    int temp = a;
+
+    a = b;
+    b = temp;
+
+    std::cout << "A: " << a << std::endl;
+    std::cout << "B: " << b << std::endl;
 
     return 0;
 }
