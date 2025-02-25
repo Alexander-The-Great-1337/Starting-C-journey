@@ -1,15 +1,12 @@
 #include <iostream>
 
 int main() {
-    int a = 1;
-    int b = 2;
-    int temp = a;
+    const double PI = 3.14;
+    const int area = 5;
 
-    a = b;
-    b = temp;
+    const double circle = PI * area / 2;
 
-    std::cout << "A: " << a << std::endl;
-    std::cout << "B: " << b << std::endl;
+    std::cout << circle << std::endl;
 
     return 0;
 }
