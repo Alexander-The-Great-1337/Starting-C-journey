@@ -1,17 +1,19 @@
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 using namespace std;
 
 int main() {
-    cout << "Fahrenheit to Celsius" << endl;
 
-    cout << "Digit a value in Fahrenheit: ";
-    double fahrenheit;
-    cin >> fahrenheit;
-    double celsius = (fahrenheit - 32) / 1.8;
+    cout << "Enter radius of a circle: ";
+    double radius;
+    cin >> radius;
+    const double PI = 3.14;
+    double area = PI * pow(radius, 2);
 
-    cout << "Celsius: " << fixed << setprecision(2) << celsius << endl;
+    cout << "The area of a circle is: " << area << endl;
+
 
     return 0;
 }
