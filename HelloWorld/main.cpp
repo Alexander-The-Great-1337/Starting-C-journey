@@ -1,11 +1,19 @@
 #include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
 
 int main() {
-    double x = 10;
-    double z = 5;
-    double y = (x + 10) / (3 * z);
 
-    std::cout << y;
+    cout << "Enter radius of a circle: ";
+    double radius;
+    cin >> radius;
+    const double PI = 3.14;
+    double area = PI * pow(radius, 2);
+
+    cout << "The area of a circle is: " << area << endl;
+
 
     return 0;
 }
