@@ -1,11 +1,15 @@
 #include <iostream>
+#include <cstdlib>
+using namespace std;
 
 int main() {
-    double x = 10;
-    double z = 5;
-    double y = (x + 10) / (3 * z);
+    srand(time(0));
+    const short maxValue = 6;
+    const short minValue = 1;
 
-    std::cout << y;
+    const int num1 = (rand()  % (maxValue - minValue + 1)) + minValue;
+    const int num2 = (rand()  % (maxValue - minValue + 1)) + minValue;
 
+    cout << "num 1: " << num1 << " num 2: " << num2 << endl;
     return 0;
 }
