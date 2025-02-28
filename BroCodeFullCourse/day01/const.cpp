@@ -4,15 +4,10 @@
 using namespace std;
 
 int main () {
-    const double PI = M_PI;
-
-    cout << "Enter a radius: ";
-    double radius;
-    cin >> radius;
-
-    double area = PI * pow(radius, 2);
-
-    cout << "Area: " << area << "\n";
+    const double PI = 3.14159;
+    const int LIGHT_SPEED = 29979245;
+    const int WIDTH = 1920;
+    const int HEIGHT = 1080;
  
     return 0;
 }
