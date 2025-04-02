@@ -72,6 +72,10 @@ public:
       cout << this->Name << " sorry no promotion for you!\n";
     }
   }
+
+  virtual void Work() {
+    cout << this->getName() << " is checking email, task backlog, performing tasks...\n";
+  }
 };
 
 class Developer : public Employee
@@ -95,6 +99,10 @@ public:
   {
     cout << this->getName() << " Fix bug using " << this->favProgramLanguage << '\n';
   }
+
+  void Work() {
+    cout << this->getName() << " is writing " << this->favProgramLanguage << " code\n";
+  }
 };
 
 class Teacher : public Employee
@@ -113,17 +121,21 @@ public:
   {
     cout << this->getName() << " is preparing " << this->Subject << " lesson\n";
   }
+
+  void Work() {
+    cout << this->getName() << " is teaching " << this->Subject << "\n";
+  }
 };
 
 int main()
 {
-  Employee employee1("Alexander", "Blizzard", 37);
+  Employee employee1 = Employee("Alexander", "Blizzard", 37);
   employee1.IntroduceYourself();
   employee1.AskForPromotion();
 
   cout << "***************************\n";
 
-  Employee employee2("Betina", "Google", 29);
+  Employee employee2 = Employee("Betina", "Google", 29);
   employee2.IntroduceYourself();
   employee2.AskForPromotion();
 
@@ -133,12 +145,22 @@ int main()
   developer1.fixBug();
   developer1.IntroduceYourself();
   developer1.AskForPromotion();
+  developer1.Work();
 
   cout << "***************************\n";
 
-  Teacher teacher1("Jack", "Cool School", 20, "History");
+  Teacher teacher1 = Teacher("Jack", "Cool School", 20, "History");
   teacher1.IntroduceYourself();
   teacher1.AskForPromotion();
+  teacher1.Work();
+
+  cout << "***************************\n";
+
+  Employee* e1 = &developer1;
+  Employee* e2 = &teacher1;
+
+  e1->Work();
+  e2->Work();
 
   return 0;
 }
