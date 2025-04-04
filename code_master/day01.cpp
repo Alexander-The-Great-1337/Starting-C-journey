@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void printString(string value);
+void printString(string* value);
 void printString2(string& value);
 
 int main()
@@ -17,20 +17,19 @@ int main()
   cout << *pName << endl;
 
   string city = "Salvador";
-  printString(city);
+
+  printString(&city);
   printString2(city);
 
   return 0;
 }
 
-void printString(string value)
+void printString(string* value)
 {
-
-  cout << value << endl;
+  cout << *value << endl;
 }
 
 void printString2(string& value)
 {
-
   cout << value << endl;
 }
