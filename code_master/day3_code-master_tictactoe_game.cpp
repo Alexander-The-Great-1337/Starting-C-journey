@@ -125,8 +125,136 @@ private:
   }
 };
 
+class NullRuleEngine : public IRuleEngine
+{
+public:
+  WinningPlayer::E GetWinningPlayer(Board &board) override
+  {
+    int width = board.GetWidth();
+
+    if (BoardSquare::E winner = CheckLines(board, width))
+      return ToWinner(winner);
+    if (BoardSquare::E winner = CheckColumns(board, width))
+      return ToWinner(winner);
+    if (BoardSquare::E winner = CheckDiagonals(board, width))
+      return ToWinner(winner);
+    if (IsFull(board))
+      return WinningPlayer::Stalemate;
+
+    return WinningPlayer::None;
+  }
+
+private:
+  WinningPlayer::E ToWinner(BoardSquare::E square)
+  {
+    return square == BoardSquare::X ? WinningPlayer::X : WinningPlayer::O;
+  }
+
+  BoardSquare::E CheckLines(Board &board, int width)
+  {
+    for (int row = 0; row < width; row++)
+    {
+      int base = row * width;
+      BoardSquare::E first = board.GetSquare(base);
+      if (first != BoardSquare::Empty)
+      {
+        bool allMatch = true;
+        for (int col = 1; col < width; col++)
+        {
+          if (board.GetSquare(base + col) != first)
+          {
+            allMatch = false;
+            break;
+          }
+        }
+        if (allMatch)
+          return first;
+      }
+    }
+    return BoardSquare::Empty;
+  }
+
+  BoardSquare::E CheckColumns(Board &board, int width)
+  {
+    for (int col = 0; col < width; col++)
+    {
+      BoardSquare::E first = board.GetSquare(col);
+      if (first != BoardSquare::Empty)
+      {
+        bool allMatch = true;
+        for (int row = 1; row < width; row++)
+        {
+          if (board.GetSquare(row * width + col) != first)
+          {
+            allMatch = false;
+            break;
+          }
+        }
+        if (allMatch)
+          return first;
+      }
+    }
+    return BoardSquare::Empty;
+  }
+
+  BoardSquare::E CheckDiagonals(Board &board, int width)
+  {
+    // Diagonal principal
+    BoardSquare::E first = board.GetSquare(0);
+    if (first != BoardSquare::Empty)
+    {
+      bool allMatch = true;
+      for (int i = 1; i < width; i++)
+      {
+        if (board.GetSquare(i * width + i) != first)
+        {
+          allMatch = false;
+          break;
+        }
+      }
+      if (allMatch)
+        return first;
+    }
+
+    // Diagonal secundária
+    first = board.GetSquare(width - 1);
+    if (first != BoardSquare::Empty)
+    {
+      bool allMatch = true;
+      for (int i = 1; i < width; i++)
+      {
+        if (board.GetSquare(i * width + (width - 1 - i)) != first)
+        {
+          allMatch = false;
+          break;
+        }
+      }
+      if (allMatch)
+        return first;
+    }
+
+    return BoardSquare::Empty;
+  }
+
+  bool IsFull(Board &board)
+  {
+    for (int i = 0; i < board.GetTotalSquares(); i++)
+    {
+      if (board.GetSquare(i) == BoardSquare::Empty)
+        return false;
+    }
+    return true;
+  }
+};
+
 int main()
 {
+
+  Board board(3);
+  NullRuleEngine ruleEngine;
+
+  Game game(board, ruleEngine);
+  game.Run();
 
   return 0;
 }
